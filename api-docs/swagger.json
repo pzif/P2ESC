@@ -1,0 +1,132 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API - Plataforma de Aprendizado",
+    "version": "1.0.0",
+    "description": "Documentação da API usando Swagger"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "summary": "Cadastrar novo usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string" },
+                  "email": { "type": "string" },
+                  "senha": { "type": "string" }
+                },
+                "required": ["nome", "email", "senha"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login do usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "senha": { "type": "string" }
+                },
+                "required": ["email", "senha"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token JWT"
+          }
+        }
+      }
+    },
+    "/courses": {
+      "get": {
+        "summary": "Listar todos os cursos",
+        "responses": {
+          "200": {
+            "description": "Lista de cursos"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar novo curso",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "titulo": { "type": "string" },
+                  "descricao": { "type": "string" }
+                },
+                "required": ["titulo", "descricao"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Curso criado"
+          }
+        }
+      }
+    },
+    "/notes": {
+      "get": {
+        "summary": "Buscar nota do usuário",
+        "responses": {
+          "200": {
+            "description": "Nota retornada"
+          }
+        }
+      },
+      "post": {
+        "summary": "Salvar/Atualizar nota",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "conteudo": { "type": "string" }
+                },
+                "required": ["conteudo"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Nota salva"
+          }
+        }
+      }
+    }
+  }
+}
+    
